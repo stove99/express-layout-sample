@@ -1,0 +1,29 @@
+{
+    "name": "ejs-app",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "connect-livereload": "^0.6.1",
+        "ejs": "^2.6.2",
+        "express": "^4.17.1",
+        "express-ejs-layouts": "^2.5.0",
+        "livereload": "^0.8.0",
+        "opn": "^6.0.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/core": "^7.5.5",
+        "@babel/node": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "nodemon": "^1.19.1"
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-env"
+        ]
+    },
+    "scripts": {
+        "start": "nodemon --exec babel-node index"
+    }
+}
