@@ -3,7 +3,9 @@ import ejs from 'ejs';
 import layout from 'express-ejs-layouts';
 import livereload from 'livereload';
 import livereloadMiddleware from 'connect-livereload';
-import opn from 'opn';
+import favicon from 'express-favicon';
+
+import router from './routes';
 
 const live_server = livereload.createServer({
     exts: ['html', 'css'],
@@ -24,21 +26,9 @@ app.engine('html', ejs.renderFile);
 app.use(layout);
 app.use(express.static(__dirname + '/public'));
 app.use(livereloadMiddleware());
+app.use(favicon(`${__dirname}/public/favicon.png`));
+app.use(router);
 
 app.listen(PORT, () => {
-    console.log(`서버가 시작됐어염 http://127.0.0.1:${PORT}`);
-
-    opn(`http://127.0.0.1:${PORT}`);
-});
-
-app.get('/', (req, res) => {
-    res.render('index.html');
-});
-
-app.get('/:page', (req, res) => {
-    res.render(`${req.params.page}.html`, { layout: 'layout/sublayout.html' });
-});
-
-app.get('/:folder/:page', (req, res) => {
-    res.render(`${req.params.folder}/${req.params.page}.html`, { layout: 'layout/sublayout.html' });
+    console.log(`서버가 시작됐어염. http://127.0.0.1:${PORT} 로 접속하세요.`);
 });
